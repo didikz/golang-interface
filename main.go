@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"math"
+	"os"
 )
 
 type shape interface {
@@ -30,6 +32,16 @@ func main() {
 	}
 
 	printArea(squareShape)
+
+	file := os.Args[1]
+	txt, err := os.Open(file)
+	if err != nil {
+		log.Fatal(err)
+		os.Exit(1)
+	}
+	bs := make([]byte, 9999)
+	txt.Read(bs)
+	fmt.Println(string(bs))
 }
 
 func printArea(s shape) {
