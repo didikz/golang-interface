@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"io"
 	"log"
 	"math"
 	"os"
@@ -39,9 +40,7 @@ func main() {
 		log.Fatal(err)
 		os.Exit(1)
 	}
-	bs := make([]byte, 9999)
-	txt.Read(bs)
-	fmt.Println(string(bs))
+	io.Copy(os.Stdout, txt)
 }
 
 func printArea(s shape) {
